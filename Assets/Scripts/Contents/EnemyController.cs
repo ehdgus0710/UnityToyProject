@@ -11,22 +11,15 @@ public class EnemyController : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
     }
-
     private void Start()
     {
-        agent.SetDestination(destinationPoint.position);
+        if(destinationPoint != null)
+            agent.SetDestination(destinationPoint.position);
     }
 
     public void SetDestinationPoint(Transform destinationPoint)
     {
         this.destinationPoint = destinationPoint;
-    }
-
-    private void Update()
-    {
-        if (agent.pathStatus == NavMeshPathStatus.PathComplete)
-        {
-            Destroy(gameObject);
-        }
+        // agent.SetDestination(destinationPoint.position);
     }
 }

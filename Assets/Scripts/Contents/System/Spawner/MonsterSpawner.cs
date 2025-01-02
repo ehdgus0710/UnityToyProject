@@ -5,6 +5,8 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
 {
     [SerializeField]
     private Transform spawnPoint;
+    [SerializeField]
+    private Transform endMovePoint;
 
     public MonsterSpawnSystem monsterSpawnSystem;
 
@@ -62,7 +64,10 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
             currentSpawnTime += GameTimeManager.Instance.DeltaTime;
 
             if(currentSpawnTime >= spawnTime)
+            {
                 ISpawn();
+                currentSpawnTime = 0f;
+            }
 
             yield return null;
         }
@@ -76,7 +81,10 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
             currentSpawnTime += GameTimeManager.Instance.DeltaTime;
 
             if (currentSpawnTime >= spawnTime)
+            {
                 ISpawn();
+                currentSpawnTime = 0f;
+            }
 
             yield return null;
         }
@@ -85,10 +93,10 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
     public virtual void ISpawn()
     {
         GameObject monster = Instantiate(monsterSpawnInfo.MonsterPrefab);
-        monster.transform.position = transform.position;
+        monster.transform.position = spawnPoint.transform.position;
 
         var enemyController = monster.GetComponent<EnemyController>();
-        enemyController.SetDestinationPoint(spawnPoint);
+        enemyController.SetDestinationPoint(endMovePoint);
 
         ++currentSpawnCount;
 
