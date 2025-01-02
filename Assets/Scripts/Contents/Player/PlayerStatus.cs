@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -34,17 +32,8 @@ public class PlayerStatus : EntityStatus
     }
 
 
-    public void AddExperience(float experience)
-    {
-        currentExperience += experience;
-
-        if (currentExperience >= currentStatus.GetStatusTable[StatusInfoType.Experience].Value)
-            OnLevelUp();
-    }
-
     public void OnLevelUp()
     {
-        currentExperience -= currentStatus.GetStatusTable[StatusInfoType.Experience].Value;
         ++currentLevel;
         levelUpEvent?.Invoke();
 
@@ -53,9 +42,6 @@ public class PlayerStatus : EntityStatus
         {
             currentStatus.GetStatusTable[item.Key].OnValueincrease(item.Value);
         }
-
-        if (currentExperience >= currentStatus.GetStatusTable[StatusInfoType.Experience].Value)
-            OnLevelUp();
     }
      
 

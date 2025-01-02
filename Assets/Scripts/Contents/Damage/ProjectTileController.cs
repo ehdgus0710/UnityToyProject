@@ -19,7 +19,7 @@ public class ProjectTileController : DamagedObject
     [SerializeField]
     protected AnimationCurve animationCurve;
 
-    protected Rigidbody rigidbody;
+    new protected Rigidbody rigidbody;
 
     protected Vector3 startPos;
 

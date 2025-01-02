@@ -25,7 +25,7 @@ public class EnemyFSM : FSMController<EnemyStateType>
     public void SetAttackEnd()
     {
         isCanAttack = false;
-        currentAttackWaitTime = EntityStatus.CurrentStatusTypeValue(StatusInfoType.AttackSpeed);
+        currentAttackWaitTime = EntityStatus.GetStatValue(StatType.AttackSpeed);
     }
 
     private float currentAttackWaitTime;
@@ -97,9 +97,9 @@ public class EnemyFSM : FSMController<EnemyStateType>
     // //{
     // //    return animatorParameterContainer.GetTriggerID(clipType);
     // //}
-    public float currentStatusTypeValue(StatusInfoType statusInfoType)
+    public float currentStatusTypeValue(StatType statusInfoType)
     {
-        return enemyStatus.CurrentStatusTypeValue(statusInfoType);
+        return enemyStatus.GetStatValue(statusInfoType);
     }
 
     protected void IsCanAttackCheck()

@@ -11,25 +11,7 @@ public struct DamageInfo
     public float            damage;
     public bool             targetDeath;
 
-    public bool             isDebuff;
-    public uint             debuffLayer;
-    public float            debuffTime;
+    public DebuffData       debuffData;
 
-    public bool             isKnockback;
-    public Vector3          knockbackDirection;
-    public float            knockbackPower;
-    public float            knockbackTime;
-    public AnimationCurve   knockbackCurve;
-
-    public void SetAttackInfo(AttackInfoData attackInfoData)
-    {
-        knockbackDirection= attackInfoData.KnockbackDirection;
-        knockbackPower    = attackInfoData.KnockbackPower;
-        knockbackTime     = attackInfoData.KnockbackTime;
-        knockbackCurve    = attackInfoData.KnockbackCurve;
-
-        if (!isKnockback)
-            return;
-        knockbackPower = attackInfoData.KnockbackPower;
-    }
+    public KnockbackData    knockbackData;
 }

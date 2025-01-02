@@ -37,10 +37,10 @@ public class TargetFollowProjectTileController : ProjectTileController
 
         int targetLayer = targetTransform.gameObject.layer;
 
-        if (targetLayer == GetLayer.Player)
-            targetTransform.GetComponent<PlayerFSM>().DestroyEvent.AddListener(DisconnectAsTargetDestroy);
-        else if (targetLayer == GetLayer.Enemy)
-            targetTransform.GetComponent<EnemyFSM>().DestroyEvent.AddListener(DisconnectAsTargetDestroy);
+        //if (targetLayer == GetLayer.Player)
+        //    targetTransform.GetComponent<PlayerFSM>().DestroyEvent.AddListener(DisconnectAsTargetDestroy);
+        //else if (targetLayer == GetLayer.Enemy)
+        //    targetTransform.GetComponent<EnemyFSM>().DestroyEvent.AddListener(DisconnectAsTargetDestroy);
 
         SetEvent(_hitEvent, _destoryEvent);
     }

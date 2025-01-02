@@ -11,9 +11,11 @@ public class StatusInfoDataEditor : Editor
 
         if (GUILayout.Button("Add Status", GUILayout.Height(40)))
         {
-            for (int i = (int)StatusInfoType.None + 1; i < (int)StatusInfoType.End; ++i)
+            script.StatusTable.Clear();
+
+            for (int i = (int)StatType.None + 1; i < (int)StatType.End; ++i)
             {
-                script.StatusTable.Add((StatusInfoType)i, new StatusValue((StatusInfoType)i));   
+                script.StatusTable.Add((StatType)i, new StatusValue((StatType)i));
             }
         }
 

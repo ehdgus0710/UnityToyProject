@@ -7,11 +7,12 @@ using UnityEngine;
 /// </summary>
 public static class GetLayerMasks
 {
-    public static readonly int Player = 1 << GetLayer.Player;
+    public static readonly int Tower = 1 << GetLayer.Tower;
     public static readonly int Ground = 1 << GetLayer.Ground;
-    public static readonly int Terrain = 1 << GetLayer.Terrain;
+    public static readonly int TowerGround = 1 << GetLayer.TowerGround;
+    public static readonly int GroundEnemy = 1 << GetLayer.GroundEnemy;
+    public static readonly int AerialEnemy = 1 << GetLayer.AerialEnemy;
     public static readonly int Enemy = 1 << GetLayer.Enemy;
-    public static readonly int EnemyDeath = 1 << GetLayer.EnemyDeath;
 }
 
 
@@ -20,9 +21,10 @@ public static class GetLayerMasks
 /// </summary>
 public static class GetLayer
 {
-    public static readonly int Player = UnityEngine.LayerMask.NameToLayer("Player");
+    public static readonly int Tower = UnityEngine.LayerMask.NameToLayer("Tower");
     public static readonly int Ground = UnityEngine.LayerMask.NameToLayer("Ground");
-    public static readonly int Terrain = UnityEngine.LayerMask.NameToLayer("Terrain");
+    public static readonly int TowerGround = UnityEngine.LayerMask.NameToLayer("TowerGround");
+    public static readonly int GroundEnemy = UnityEngine.LayerMask.NameToLayer("GroundEnemy");
+    public static readonly int AerialEnemy = UnityEngine.LayerMask.NameToLayer("AerialEnemy");
     public static readonly int Enemy = UnityEngine.LayerMask.NameToLayer("Enemy");
-    public static readonly int EnemyDeath = UnityEngine.LayerMask.NameToLayer("EnemyDeath");
 }

@@ -18,7 +18,7 @@ public class GameTimeManager : Sington<GameTimeManager>
         base.Awake();
 
         gameTimeScale = Time.timeScale;
-        //Time.fixedDeltaTime = 0.02f * gameTimeScale;
+        Time.fixedDeltaTime = 0.02f * gameTimeScale;
     }
 
     public void Pause()

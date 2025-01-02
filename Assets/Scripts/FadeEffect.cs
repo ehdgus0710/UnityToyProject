@@ -1,50 +1,43 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class FadeEffect : MonoBehaviour
 {
-    public Image m_Image;
+    public Image image;
 
     void Start()
     {
-        if(null != m_Image)
+        if(null != image)
             StartCoroutine(FadeIn());
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator FadeIn()
     {
-        
-    }
-
-    IEnumerator FadeIn()
-    {
-        Color Alpha = m_Image.color;
+        Color Alpha = image.color;
         while(0 < Alpha.a)
         {
             Alpha.a -= 0.01f;
-            m_Image.color = Alpha;
+            image.color = Alpha;
 
             yield return null;
         }
 
         Alpha.a = 0f;
-        m_Image.color = Alpha;
+        image.color = Alpha;
     }
 
-    IEnumerator FadeOut()
+    private IEnumerator FadeOut()
     {
-        Color Alpha = m_Image.color;
+        Color Alpha = image.color;
         while (1f > Alpha.a)
         {
             Alpha.a -= 0.01f;
-            m_Image.color = Alpha;
+            image.color = Alpha;
 
             yield return null;
         }
         Alpha.a = 1f;
-        m_Image.color = Alpha;
+        image.color = Alpha;
     }
 }

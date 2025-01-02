@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using UnityEngine;
 
+
+[System.Serializable]
 public abstract class SerializableDictionaryBase<TKey, TValue, TValueStorage> : Dictionary<TKey, TValue>, ISerializationCallbackReceiver
 {
 	[SerializeField]
-	TKey[] m_keys;
+	private TKey[] m_keys;
 	[SerializeField]
-	TValueStorage[] m_values;
+	private TValueStorage[] m_values;
 
 	public SerializableDictionaryBase()
 	{
@@ -70,6 +72,7 @@ public abstract class SerializableDictionaryBase<TKey, TValue, TValueStorage> : 
 	}
 }
 
+[System.Serializable]
 public class SerializableDictionary<TKey, TValue> : SerializableDictionaryBase<TKey, TValue, TValue>
 {
 	public SerializableDictionary()
@@ -101,6 +104,7 @@ public static class SerializableDictionary
 	}
 }
 
+[System.Serializable]
 public class SerializableDictionary<TKey, TValue, TValueStorage> : SerializableDictionaryBase<TKey, TValue, TValueStorage> where TValueStorage : SerializableDictionary.Storage<TValue>, new()
 {
 	public SerializableDictionary()

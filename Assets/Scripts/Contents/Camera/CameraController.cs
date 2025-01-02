@@ -13,7 +13,7 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     private float cameraHeight = 25;
 
-    private Camera camera;
+    new private Camera camera;
     private Vector3 targetPos;
 
 

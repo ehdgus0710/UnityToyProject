@@ -1,14 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class StatusContainer
-{
-    [SerializeField]
-    protected SerializableDictionary<StatusInfoType, StatusValue> statusTable = new SerializableDictionary<StatusInfoType, StatusValue>();
-    public SerializableDictionary<StatusInfoType, StatusValue> GetStatusTable { get { return statusTable; } }
+{    
+    protected SerializableDictionary<StatType, StatusValue> statusTable = new SerializableDictionary<StatType, StatusValue>();
+    public SerializableDictionary<StatType, StatusValue> GetStatusTable { get { return statusTable; } }
 
-    public void StatusCopy(StatusInfoData statusInfoData)
+    public void CopyStatus(StatusInfoData statusInfoData)
     { 
         statusTable.Clear();
 
@@ -29,10 +24,15 @@ public class StatusContainer
     {
         foreach (var item in statusTable)
         {
-            if(!(item.Key == StatusInfoType.HP || item.Key == StatusInfoType.MP))
+            if (!(item.Key == StatType.HP || item.Key == StatType.MP))
                 continue;
 
-            item.Value.ValueCopy(statusTable[(StatusInfoType)((int)item.Key + 1)]);
+            item.Value.ValueCopy(statusTable[(StatType)((int)item.Key)]);
         }
+    }
+
+    public StatusValue GetStat(StatType statType)
+    {
+        return statusTable[statType];
     }
 }

@@ -8,9 +8,7 @@ public enum EnemyType
 
 public static class EnemyTypeInfo
 {
-    public static readonly int Player = 1 << GetLayer.Player;
     public static readonly int Ground = 1 << GetLayer.Ground;
-    public static readonly int Terrain = 1 << GetLayer.Terrain;
 
 
     public static System.Type GetEnemyStateType(EnemyType enemyType, EnemyStateType enemyStateType)
@@ -23,9 +21,7 @@ public static class EnemyTypeInfo
 }
 public static class PlayerTypeInfo
 {
-    public static readonly int Player = 1 << GetLayer.Player;
     public static readonly int Ground = 1 << GetLayer.Ground;
-    public static readonly int Terrain = 1 << GetLayer.Terrain;
 
 
     public static System.Type GetPlayerStateType(PlayerStateType playerStateType)

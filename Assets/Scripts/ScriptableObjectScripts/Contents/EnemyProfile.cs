@@ -1,14 +1,15 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "EnemyProfile", menuName = "Profile/EnemyProfile", order = 3)]
-[Serializable]
+[System.Serializable]
 public class EnemyProfile : ScriptableObject
 {
     [SerializeField]
-    private float IdleDetectionDistancem;
-    public float IdleDetectionDistance { get { return IdleDetectionDistancem; } }
+    private MoveType moveType;
+    public MoveType MoveType { get { return moveType; } }
 
+    [SerializeField]
+    private StatusInfoData enemyStatusInfoData;
+    [SerializeField]
+    public StatusInfoData EnemyStatusInfoData { get { return enemyStatusInfoData; } }
 }

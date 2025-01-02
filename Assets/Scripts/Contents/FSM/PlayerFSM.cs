@@ -9,16 +9,7 @@ public class PlayerFSM : FSMController<PlayerStateType>
     private Animator animator;
     public Animator Animator {  get { return animator; } }
 
-    private bool isGrounded = false;
-    private bool isRespwan = true;
     private bool isMoveable = true;
-
-    private float currentIdleTime = 0f;
-
-    [SerializeField]
-    private float timeoutToIdleTime = 5f;
-    private bool isTimeoutToIdle = false;
-    //private bool isJump
 
     protected void Awake()
     {
@@ -54,16 +45,6 @@ public class PlayerFSM : FSMController<PlayerStateType>
     {
     }
 
-    public void OnInputMouseRightButton()
-    {
-        if (!isMoveable && currentStateType == PlayerStateType.Dash)
-            return;
-
-        ChangeState(PlayerStateType.Move);
-
-        Vector3 mousePoint;
-    }
-
     public void OnDashInput()
     {
         if (!isMoveable && currentStateType == PlayerStateType.Dash)
@@ -81,12 +62,6 @@ public class PlayerFSM : FSMController<PlayerStateType>
     public void Respawn()
     {
         animator.SetTrigger(PlayerUtilAnimation.hashRespawn);
-    }
-
-    public void RespawnFinished()
-    {
-        isRespwan = false;
-        //damageable.isInvulnerable = false;
     }
 
     public void SetMoveable(bool isMoveable)

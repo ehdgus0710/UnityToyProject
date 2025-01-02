@@ -1,24 +1,21 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
-[Serializable]
+[System.Serializable]
 public class EntityStatus : MonoBehaviour, IDamageable
 {
     [SerializeField]
-    protected StatusInfoData originalData;
+    protected StatusInfoData originalStatusData;
 
     [SerializeField]
     protected StatusContainer currentStatus;
+
     public StatusContainer CurrentStatus
     {
         get { return currentStatus; }
     }
 
-    public float CurrentStatusTypeValue(StatusInfoType statusInfoType)
+    public float GetStatValue(StatType statusInfoType)
     {
         return currentStatus.GetStatusTable[statusInfoType].Value;
     }
@@ -37,20 +34,20 @@ public class EntityStatus : MonoBehaviour, IDamageable
 
     private void Reset()
     {
-        IsStatusCopy();
+        CopyStatus();
     }
 
     private void Awake()
     {
-        IsStatusCopy();
+        CopyStatus();
     }
 
-    private void IsStatusCopy()
+    private void CopyStatus()
     {
-        if (originalData != null)
+        if (originalStatusData != null)
             return;
 
-        currentStatus.StatusCopy(originalData);
+        currentStatus.CopyStatus(originalStatusData);
     }
 
     public virtual bool OnDamage(ref DamageInfo damageInfo)
@@ -58,7 +55,7 @@ public class EntityStatus : MonoBehaviour, IDamageable
         if (isDead || !isHit)
             return false;
 
-        float currentHP = currentStatus.GetStatusTable[StatusInfoType.HP].AddValue(-damageInfo.damage);
+        float currentHP = currentStatus.GetStat(StatType.HP).AddValue(-damageInfo.damage);
 
         //해당 이벤트는 이펙트 관련 및 피격시 무조건 동작 되어야 하는 기능 모음
         hitEvent?.Invoke();
@@ -66,21 +63,19 @@ public class EntityStatus : MonoBehaviour, IDamageable
         if (currentHP <= 0f)
         {
             damageInfo.targetDeath = true;
-            damageInfo.attackOwner.GetComponent<EntityStatus>().attackTargetDeathEvent?.Invoke(currentStatus.GetStatusTable[StatusInfoType.Experience].Value);
+            // damageInfo.attackOwner.GetComponent<EntityStatus>().attackTargetDeathEvent?.Invoke(currentStatus.GetStatusTable[StatType.Experience].Value);
             deathEvent?.Invoke();
         }
         else
         {
-            if (damageInfo.isDebuff)
+            if (damageInfo.debuffData != null)
             {
-                // 디버프 어케 할지
-                // 현재 계획은 레이어를 통해 디버프 받을 것을 추가 하고, 현재 적용 된 디버프인 경우 시간 처음부터 다시 계산
-                debuffEvent?.Invoke(damageInfo.debuffLayer);
+                debuffEvent?.Invoke(damageInfo.debuffData.debuffLayer);
             }
 
-            if(damageInfo.isKnockback)
+            if (damageInfo.knockbackData != null)
             {
-                // 넉백 어케 할지 추가
+
             }
         }
 

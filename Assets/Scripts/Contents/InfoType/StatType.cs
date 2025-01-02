@@ -1,20 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 [System.Serializable]
-public enum StatusInfoType
+public enum StatType
 {
     None = 0,
     HP,
-    MaxHP,
-
     MP,
-    MaxMP,
 
     MovementSpeed,
-    AttackSpeed,
 
+    AttackSpeed,
+    AttackRange,
     BasicAttackPower,
 
     CriticalPercentage,
@@ -23,7 +17,9 @@ public enum StatusInfoType
     Defense,
     MagicResistance,
 
-    Experience,
+    Damage,
+    MagicDamage,
+
 
     End
 }

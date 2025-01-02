@@ -1,8 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-
 [System.Serializable]
 public enum EnemyAttackType
 {
@@ -10,4 +5,12 @@ public enum EnemyAttackType
     BasicAttack,
     Skill,
     End
+}
+
+[System.Serializable]
+public enum TowerAttackType
+{
+    Ground,
+    Aerial,
+    All,
 }
