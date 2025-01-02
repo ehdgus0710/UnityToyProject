@@ -3,15 +3,16 @@ using UnityEngine;
 public class TowerGround : MonoBehaviour
 {
     private TowerController towerController;
+    private Material currentMaterial;
 
-    private Color defalueColor;
-    private Color currentColor;
+    [SerializeField]
+    private GameObject uiConrtroller;
 
     [SerializeField]
     private Color selectColor;
 
-    [SerializeField]
-    private Material currentMaterial;
+    private Color defalueColor;
+    private Color currentColor;
 
     private void Awake()
     {
@@ -28,10 +29,12 @@ public class TowerGround : MonoBehaviour
     public void OnSelectionEffect()
     {
         currentMaterial.color = selectColor;
+        uiConrtroller.SetActive(true);
     }
 
     public void OnEndSelection()
     {
         currentMaterial.color = defalueColor;
+        uiConrtroller.SetActive(false);
     }
 }

@@ -1,48 +1,23 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
 {
+    [SerializeField]
+    private Transform spawnPoint;
+
     public MonsterSpawnSystem monsterSpawnSystem;
 
     protected MonsterSpawnInfo monsterSpawnInfo;
+
+    private Coroutine spawnCoroutine;
+
     protected float spawnTime;
     protected float currentSpawnTime = 0f;
+    protected int currentSpawnCount = 0;
 
     protected bool isActive = false;
     protected bool isRepeat = true;
-
-    protected virtual void Awake()
-    {
-        
-    }
-
-    protected virtual void Start()
-    {
-        if (monsterSpawnInfo == null)
-            enabled = false;
-    }
-
-    protected virtual void Update()
-    {
-        if (!isActive)
-            return;
-
-        currentSpawnTime += GameTimeManager.Instance.DeltaTime;
-
-        if (currentSpawnTime >= spawnTime)
-        {
-            currentSpawnTime = 0f;
-            ISpawn();
-        }
-    }
-
-    public virtual void StartSpawn()
-    {
-        isActive = true;
-        enabled = true;
-    }
 
     public virtual void SetMonsterSpawnInfo(MonsterSpawnInfo monsterSpawnInfo)
     {
@@ -52,13 +27,23 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
 
     public virtual void StartSpawn(bool isRepeat)
     {
-        SetRepeat(isRepeat);
-        StartSpawn();
+        if(isRepeat)
+            spawnCoroutine = StartCoroutine(StartSpawnRepeatCoroutine());
+        else
+            spawnCoroutine = StartCoroutine(StartSpawnCoroutine());
+
+        isActive = true;
+        enabled = true;
     }
     public virtual void StopSpawn()
     {
         isActive = false;
         //enabled = false;
+        if(spawnCoroutine != null)
+        {
+            StopCoroutine(spawnCoroutine);
+            spawnCoroutine = null;
+        }
     }
 
     public virtual void SetSpwanTime(float time)
@@ -66,15 +51,46 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
         spawnTime = time;
     }
 
-    public virtual void SetRepeat(bool _isRepeat)
+
+    private IEnumerator StartSpawnCoroutine()
     {
-        this.isRepeat = _isRepeat;
+        currentSpawnCount = 0; 
+        ISpawn();
+
+        while (currentSpawnCount < monsterSpawnInfo.SpawnCount)
+        {
+            currentSpawnTime += GameTimeManager.Instance.DeltaTime;
+
+            if(currentSpawnTime >= spawnTime)
+                ISpawn();
+
+            yield return null;
+        }
+    }
+    private IEnumerator StartSpawnRepeatCoroutine()
+    {
+        ISpawn();
+
+        while (true)
+        {
+            currentSpawnTime += GameTimeManager.Instance.DeltaTime;
+
+            if (currentSpawnTime >= spawnTime)
+                ISpawn();
+
+            yield return null;
+        }
     }
 
     public virtual void ISpawn()
     {
         GameObject monster = Instantiate(monsterSpawnInfo.MonsterPrefab);
         monster.transform.position = transform.position;
+
+        var enemyController = monster.GetComponent<EnemyController>();
+        enemyController.SetDestinationPoint(spawnPoint);
+
+        ++currentSpawnCount;
 
         if (!isRepeat)
             StopSpawn();

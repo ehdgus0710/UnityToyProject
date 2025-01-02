@@ -9,8 +9,13 @@ public class MonsterSpawnInfo : ScriptableObject
     public GameObject MonsterPrefab { get { return monsterPrefab; } }
 
     [SerializeField]
+    private int spawnCount;
+    public int SpawnCount { get { return spawnCount; } }
+
+    [SerializeField]
     private float spawnTime;
     public float SpawnTime { get { return spawnTime; } }
+
 
 
 }

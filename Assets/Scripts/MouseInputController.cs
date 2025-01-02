@@ -19,7 +19,7 @@ public class MouseInputController : MonoBehaviour
 
     public bool GetMouseWorldPoint()
     {
-        Ray mouseRay = mainCamara.ScreenPointToRay(Mouse.current.position.ReadValue());
+        mouseRay = mainCamara.ScreenPointToRay(Mouse.current.position.ReadValue());
 
         RaycastHit hitData;
         bool isResult = Physics.Raycast(mouseRay, out hitData, 1000, GetLayerMasks.TowerGround);
@@ -38,6 +38,10 @@ public class MouseInputController : MonoBehaviour
         {
             if(GetMouseWorldPoint())
                 isSelectTower = true;
+        }
+        else
+        {
+
         }
     }
 

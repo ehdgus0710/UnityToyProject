@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class TowerController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField]
+    private TowerGround ownerGround;
+
+
+    public void SetCreateInfo(TowerGround owner)
+    {
+        ownerGround = owner;
+    }
     void Start()
     {
         

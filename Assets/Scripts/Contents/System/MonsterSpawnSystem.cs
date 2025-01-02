@@ -11,24 +11,18 @@ public class MonsterSpawnSystem : MonoBehaviour
     public List<MonsterSpawnInfo> spawnDataByLevelList;
 
     private int currentLevel = 0;
-    private float currentPlayTime = 0f;
     private bool isActive = false;
+
+    [SerializeField]
+    private bool useAutoStart = false;
 
     private void Start()
     {
-        isActive = true;
-        currentPlayTime = 0f;
-        StartSpawn();
-    }
-
-    // 코루틴을 사용하여 시간증가에 따른 몬스터 스폰 레벨 변경 코드 작성하기
-
-    private void Update()
-    {
-        if (!isActive)
-            return;
-
-        currentPlayTime += GameTimeManager.Instance.DeltaTime;
+        if(useAutoStart)
+        {
+            isActive = true;
+            StartSpawn();
+        }
     }
 
     public void StartSpawn()
