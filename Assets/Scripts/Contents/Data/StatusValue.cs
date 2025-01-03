@@ -28,7 +28,7 @@ public class StatusValue
     public float AddValue(float addValue)
     {
         this.value += addValue;
-        this.value = System.Math.Min(minValue, addValue);
+        this.value = System.Math.Max(minValue, value);
 
         return this.value;
     }

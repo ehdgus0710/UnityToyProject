@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78c3a12fa82e56f4fbf25f3b6e707be6, type: 3}
+  m_Name: TowerAttackInfo
+  m_EditorClassIdentifier: 
+  attackObjectPrefab: {fileID: 467207981517459288, guid: dab2e5281d5e1af49a7ac23eca0b0633, type: 3}
+  vfxCantainer: {fileID: 0}
+  vfxKey: 
+  animationKey: 
+  createOffsetPos: {x: 0, y: 0, z: 0}
+  isKnockback: 0
+  knockbackDirection: {x: 0, y: 0, z: 0}
+  knockbackPower: 0
+  knockbackTime: 0
+  knockbackCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

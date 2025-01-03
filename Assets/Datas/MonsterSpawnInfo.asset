@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: MonsterSpawnInfo
   m_EditorClassIdentifier: 
   monsterPrefab: {fileID: 4863218297712100862, guid: da19658a3004de244b919e5385040d41, type: 3}
+  spawnCount: 20
   spawnTime: 1
+  isRepeat: 0

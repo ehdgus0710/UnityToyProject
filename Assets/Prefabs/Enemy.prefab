@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -6150306849131811762}
   - component: {fileID: 5006297857186640272}
   - component: {fileID: 360052596224087387}
+  - component: {fileID: 5698484919472666584}
   m_Layer: 10
   m_Name: Enemy
   m_TagString: Untagged
@@ -145,6 +146,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destinationPoint: {fileID: 0}
+  enemyStatus: {fileID: 5698484919472666584}
+  destinationEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!54 &360052596224087387
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -172,3 +177,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 0
+--- !u!114 &5698484919472666584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4863218297712100862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69089854867f3b442824cdededc662ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyProfile: {fileID: 11400000, guid: dff5a7d1c5e2e8541a18c26b7f6b4fcb, type: 2}
+  hitEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  deathEvent:
+    m_PersistentCalls:
+      m_Calls: []

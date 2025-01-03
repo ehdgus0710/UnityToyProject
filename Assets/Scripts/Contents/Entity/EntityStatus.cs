@@ -26,6 +26,8 @@ public class EntityStatus : MonoBehaviour, IDamageable
     protected bool isHit = true;
     public bool IsHit { get { return isHit; } }
 
+    public UnityEvent DeathEvent { get { return deathEvent; } }
+
     public UnityEvent deathEvent;
     public UnityEvent hitEvent;
     public UnityEvent<uint> debuffEvent;

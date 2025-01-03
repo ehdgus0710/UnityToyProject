@@ -30,7 +30,7 @@ public class MonsterSpawnSystem : MonoBehaviour
         foreach (var spawner in monsterSpawnerList)
         {
             spawner.SetMonsterSpawnInfo(spawnDataByLevelList[currentLevel]);
-            spawner.StartSpawn(true);
+            spawner.StartSpawn();
         }
     }
 

@@ -1,3 +1,5 @@
+using System.Net;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -12,15 +14,32 @@ public class TargetFollowProjectTileController : ProjectTileController
     [SerializeField]
     private Transform targetTransform;
 
+    Vector3 endPoint;
+
     protected override void Update()
     {
-        base.Update();
-
-        if(!isTargetFollow)
+        if(isTargetFollow)
         {
-            if (OnTargetDistancePassed())
-                Destroy(gameObject);
+            if (targetTransform.IsDestroyed())
+            {
+                DisconnectAsTargetDestroy();
+            }
+            else
+            {
+                float distance = Vector3.Distance(targetTransform.position, rigidbody.position);
+
+                if (distance < 5f)
+                {
+                    hitEvent?.Invoke();
+                    Destroy(gameObject);
+                }
+            }
         }
+        else
+        {
+            if(5f >= Vector3.Distance(endPoint, rigidbody.position))
+                Destroy(gameObject);
+        }       
     }
 
     protected override void FixedUpdate()
@@ -31,16 +50,11 @@ public class TargetFollowProjectTileController : ProjectTileController
             rigidbody.MovePosition(rigidbody.position + moveDirection * Time.fixedDeltaTime * moveSpeed);
     }
 
-    public void TargetShooting(Transform target, UnityAction _hitEvent = null, UnityAction _destoryEvent = null)
+    public void TargetShooting(Transform target,UnityAction _hitEvent = null, UnityAction _destoryEvent = null)
     {
         targetTransform = target;
 
         int targetLayer = targetTransform.gameObject.layer;
-
-        //if (targetLayer == GetLayer.Player)
-        //    targetTransform.GetComponent<PlayerFSM>().DestroyEvent.AddListener(DisconnectAsTargetDestroy);
-        //else if (targetLayer == GetLayer.Enemy)
-        //    targetTransform.GetComponent<EnemyFSM>().DestroyEvent.AddListener(DisconnectAsTargetDestroy);
 
         SetEvent(_hitEvent, _destoryEvent);
     }
@@ -48,9 +62,12 @@ public class TargetFollowProjectTileController : ProjectTileController
     private void DisconnectAsTargetDestroy()
     {
         isTargetFollow = false;
-        moveDirection = Vector3.Normalize(targetTransform.position - rigidbody.position);
+        endPoint = targetTransform.position;
+        moveDirection = Vector3.Normalize(endPoint - rigidbody.position);
 
         endMovementDistance = Vector3.Distance(targetTransform.position, rigidbody.position);
+
+        
 
         if (moveSpeed <= 0f)
             moveSpeed = 10f;

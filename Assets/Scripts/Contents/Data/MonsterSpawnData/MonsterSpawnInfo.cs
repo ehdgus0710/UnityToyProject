@@ -16,6 +16,8 @@ public class MonsterSpawnInfo : ScriptableObject
     private float spawnTime;
     public float SpawnTime { get { return spawnTime; } }
 
-
+    [SerializeField]
+    private bool isRepeat;
+    public bool IsRepeat { get { return isRepeat; } }
 
 }

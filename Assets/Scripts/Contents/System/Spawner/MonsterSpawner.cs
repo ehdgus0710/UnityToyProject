@@ -27,6 +27,17 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
         spawnTime = this.monsterSpawnInfo.SpawnTime;
     }
 
+    public virtual void StartSpawn()
+    {
+        if (monsterSpawnInfo.IsRepeat)
+            spawnCoroutine = StartCoroutine(StartSpawnRepeatCoroutine());
+        else
+            spawnCoroutine = StartCoroutine(StartSpawnCoroutine());
+
+        isActive = true;
+        enabled = true;
+    }
+
     public virtual void StartSpawn(bool isRepeat)
     {
         if(isRepeat)
@@ -39,6 +50,7 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
     }
     public virtual void StopSpawn()
     {
+        currentSpawnCount = 0;
         isActive = false;
         //enabled = false;
         if(spawnCoroutine != null)
@@ -84,6 +96,11 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
             {
                 ISpawn();
                 currentSpawnTime = 0f;
+
+                //if (monsterSpawnInfo.SpawnCount == currentSpawnCount)
+                //{
+                //    StopSpawn();
+                //}
             }
 
             yield return null;
@@ -97,10 +114,9 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
 
         var enemyController = monster.GetComponent<EnemyController>();
         enemyController.SetDestinationPoint(endMovePoint);
+        // enemyController.destinationEvent.AddListener()
+
 
         ++currentSpawnCount;
-
-        if (!isRepeat)
-            StopSpawn();
     }
 }
