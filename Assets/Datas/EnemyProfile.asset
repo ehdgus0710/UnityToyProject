@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveType: 0
   enemyStatusInfoData: {fileID: 11400000, guid: 972ce52b64a1fa247a5cd013bb85e3f8, type: 2}
+  money: 50

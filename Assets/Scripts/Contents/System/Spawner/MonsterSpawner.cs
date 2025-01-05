@@ -83,6 +83,8 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
 
             yield return null;
         }
+
+        monsterSpawnSystem.EndSpawn();
     }
     private IEnumerator StartSpawnRepeatCoroutine()
     {
@@ -114,8 +116,6 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
 
         var enemyController = monster.GetComponent<EnemyController>();
         enemyController.SetDestinationPoint(endMovePoint);
-        // enemyController.destinationEvent.AddListener()
-
 
         ++currentSpawnCount;
     }

@@ -1,13 +1,17 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class EnemyStatus : MonoBehaviour, IDamageable
 {
+    [SerializeField]
     private SerializableDictionary<StatType, StatusValue> currentValues = new SerializableDictionary<StatType, StatusValue>();
 
     [SerializeField]
     private EnemyProfile enemyProfile;
 
+    [SerializeField]
+    private Image hpbar;
     public bool IsDead { get; private set; } = false;
 
 
@@ -27,6 +31,8 @@ public class EnemyStatus : MonoBehaviour, IDamageable
 
             currentValues[item.Key].ValueCopy(item.Value);
         }
+
+        hpbar.fillAmount = 1f;
     }
 
 
@@ -41,12 +47,15 @@ public class EnemyStatus : MonoBehaviour, IDamageable
         }
 
         var currentHp = currentValues[StatType.HP].AddValue(-damage);
+        hpbar.fillAmount = currentHp / currentValues[StatType.HP].MaxValue;
+
         hitEvent?.Invoke();
 
         if (currentHp <= 0)
         {
             IsDead = true;
             inoutDamageInfo.targetDeath = IsDead;
+            GameController.Instance.AddMoney(enemyProfile.Money);
             deathEvent?.Invoke();
             Destroy(gameObject);
         }

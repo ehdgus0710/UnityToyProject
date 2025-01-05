@@ -34,6 +34,7 @@ public class EnemyController : MonoBehaviour
     {
         if (agent.isStopped)
         {
+            GameController.Instance.LifeDown();
             destinationEvent?.Invoke();
             Destroy(gameObject);
         }

@@ -24,7 +24,10 @@ public class TowerProfile : ScriptableObject
     public float AttackSpeed { get { return attackSpeed; } }
 
     [SerializeField]
-    private float price;
-    public float Price { get { return price; } }
+    private int price;
+    public int Price { get { return price; } }
 
+    [SerializeField]
+    private int resalePrice;
+    public int ResalePrice { get { return resalePrice; } }
 }

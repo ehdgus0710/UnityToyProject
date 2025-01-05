@@ -13,6 +13,9 @@ public class CreateTower : MonoBehaviour
 
     public void OnCreateTower(int index)
     {
+        if (!GameController.Instance.UseMoney(createTowerDatas[index].Price))
+            return;
+
         var tower = Instantiate(createTowerDatas[index].TowerPrefab, towerSocket);
         tower.transform.localPosition = createTowerDatas[index].CreateLocalPosition();
 

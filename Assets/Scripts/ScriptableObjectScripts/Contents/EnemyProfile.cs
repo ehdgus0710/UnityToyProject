@@ -12,4 +12,8 @@ public class EnemyProfile : ScriptableObject
     private StatusInfoData enemyStatusInfoData;
     [SerializeField]
     public StatusInfoData EnemyStatusInfoData { get { return enemyStatusInfoData; } }
+
+    [SerializeField]
+    private int money;
+    public int Money { get { return money; } }
 }

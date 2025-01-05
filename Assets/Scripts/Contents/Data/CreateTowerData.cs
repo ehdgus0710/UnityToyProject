@@ -12,4 +12,8 @@ public class CreateTowerData : ScriptableObject
     private Vector3 createLocalPosition;
     public Vector3 CreateLocalPosition() { return createLocalPosition; }
 
+    [SerializeField]
+    private int price;
+    public int Price { get { return price; } }
+
 }

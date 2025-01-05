@@ -15,6 +15,7 @@ MonoBehaviour:
   attackType: 0
   attackpower: 20
   masicAttackpower: 0
-  attackRange: 20
+  attackRange: 40
   attackSpeed: 1
   price: 100
+  resalePrice: 50

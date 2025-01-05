@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TowerController : MonoBehaviour
@@ -12,6 +11,9 @@ public class TowerController : MonoBehaviour
     public TowerProfile TowerProfile { get { return towerProfile; } }
 
     [SerializeField]
+    private TowerUIController uIController;
+
+    [SerializeField]
     private int targetSize = 10;
 
     [SerializeField]
@@ -21,15 +23,20 @@ public class TowerController : MonoBehaviour
     [SerializeField]
     private AttackInfoData attackInfoData;
 
+    private Vector3 ownerPosition;
+    private Vector2 currentPosition;
+
     private Collider[] targetColliders;
     private Coroutine targetQuest = null;
+
+    private bool isDrawInfo = false;
 
     private float questRange = 0.2f;
 
     private float currentTime = 0f;
     private bool isAttackTarget = false;
     private bool isTarget = false;
-    private bool isReload = false;
+    private bool isReload = true;
 
     private void Start()
     {
@@ -41,21 +48,27 @@ public class TowerController : MonoBehaviour
     public void SetCreateInfo(TowerGround owner)
     {
         ownerGround = owner;
+        ownerGround.SetTower(this);
+
+        ownerPosition = ownerGround.transform.position;
+        currentPosition = new Vector2(ownerPosition.x, ownerPosition.z);
     }
 
     private bool OnFindTarget()
     {
-        int count = Physics.OverlapSphereNonAlloc(transform.position, towerProfile.AttackRange, targetColliders
+        int count = Physics.OverlapSphereNonAlloc(ownerPosition, towerProfile.AttackRange, targetColliders
             , GetLayerMasks.Enemy | GetLayerMasks.GroundEnemy | GetLayerMasks.AerialEnemy);
 
         if (count == 0)
             return false;
 
         float currentDistance = float.MaxValue;
+        Vector2 target;
 
         for(int i = 0; i < count; ++i)
         {
-            float targetDistance = Vector3.Distance(targetColliders[i].transform.position, transform.position);
+            target = new Vector2(targetColliders[i].transform.position.x, targetColliders[i].transform.position.z);
+            float targetDistance = Vector2.Distance(target, currentPosition);
             if (currentDistance > targetDistance)
             {
                 if (targetColliders[i].transform.GetComponent<IDamageable>().IsDead)
@@ -109,7 +122,11 @@ public class TowerController : MonoBehaviour
 
     private bool CheckTargetStatus()
     {
-        if(targetInfo.IsDead || towerProfile.AttackRange < Vector3.Distance(targetTransform.position, transform.position))
+        if (targetTransform == null)
+            return false;
+
+        Vector2 target = new Vector2(targetTransform.position.x, targetTransform.position.z);
+        if (targetInfo.IsDead || towerProfile.AttackRange < Vector2.Distance(target, currentPosition))
         {
             targetTransform = null;
             targetInfo = null;
@@ -154,4 +171,24 @@ public class TowerController : MonoBehaviour
         targetQuest = null;
     }
 
+    public void OnDrawInfo()
+    {
+        isDrawInfo = true;
+        uIController.OnDrawInfo();
+    }
+
+    public void offDrawInfo()
+    {
+        isDrawInfo = true;
+        uIController.OffDrawInfo();
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (isDrawInfo)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(ownerPosition, towerProfile.AttackRange);
+        }
+    }
 }
