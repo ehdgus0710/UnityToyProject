@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PawnTowerData
   m_EditorClassIdentifier: 
   towerPrefab: {fileID: 7274916945527093717, guid: 9fd29530531e1f242826bdf53d4969c7, type: 3}
-  createLocalPosition: {x: 0, y: 0, z: 0}
+  createLocalPosition: {x: 0, y: -0.5, z: 0}
   price: 100

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameTimeManager : Sington<GameTimeManager>
@@ -12,6 +10,8 @@ public class GameTimeManager : Sington<GameTimeManager>
     public float FixedDeltaTime { get { return Time.fixedDeltaTime * gameTimeScale; } }
     public float UnscaleDeltaTime { get { return Time.deltaTime; } }
     public float UnscaleFixedDeltaTime { get { return Time.fixedDeltaTime; } }
+
+    private int speedUpCount = 0;
 
     protected override void Awake()
     {
@@ -47,5 +47,17 @@ public class GameTimeManager : Sington<GameTimeManager>
     public void ResetTimeScale()
     {
         gameTimeScale = originTimeScale;
+    }
+
+    public void OnSpeedUp()
+    {
+        gameTimeScale *= 2f;
+        ++speedUpCount;
+
+        if (speedUpCount >= 4)
+        {
+            speedUpCount = 0;
+            gameTimeScale = 1f;
+        }
     }
 }

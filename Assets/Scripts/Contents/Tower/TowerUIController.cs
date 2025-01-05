@@ -6,14 +6,10 @@ public class TowerUIController : MonoBehaviour
     [SerializeField]
     private TowerController owner;
 
-    //[SerializeField]
-    //private GameObject uiCanvas;
-
     [SerializeField]
     private GameObject attackRangeShape;
     public void OnDrawInfo()
     {
-        // uiCanvas?.SetActive(true);
         attackRangeShape.SetActive(true);
 
         float attackRange = owner.TowerProfile.AttackRange * 0.35f;
@@ -22,7 +18,6 @@ public class TowerUIController : MonoBehaviour
 
     public void OffDrawInfo()
     {
-        // uiCanvas?.SetActive(false);
         attackRangeShape.SetActive(false);
     }
 }

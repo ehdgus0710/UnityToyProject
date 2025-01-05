@@ -1,4 +1,4 @@
-using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class UpgradeTower : MonoBehaviour
@@ -15,6 +15,9 @@ public class UpgradeTower : MonoBehaviour
     [SerializeField]
     private GameObject upgradeButton;
 
+    [SerializeField]
+    private TextMeshProUGUI priceText;
+
     public void OnUpgradeTower(int index)
     {
         if (!GameController.Instance.UseMoney(upgradeTowerDatas[index].Price))
@@ -30,11 +33,14 @@ public class UpgradeTower : MonoBehaviour
         towerController.SetCreateInfo(ownerGround);
         ownerGround.SetTower(towerController);
         upgradeTowerDatas = towerController.CreateTowerDatas;
-        int count = upgradeTowerDatas.Count();
+        int count = upgradeTowerDatas.Length;
 
         if (count == 0)
             upgradeButton.SetActive(false);
-        // towerController.GetUpgradeData;
+        else
+        {
+            priceText.text = $"Price : {upgradeTowerDatas[0].Price.ToString()}";
+        }
     }
 
     public void SetUpgeradeTowerData(CreateTowerData[] upgradeDatas)
