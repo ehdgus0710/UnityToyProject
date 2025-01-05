@@ -8,6 +8,9 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
     [SerializeField]
     private Transform endMovePoint;
 
+    [SerializeField]
+    private Transform[] movePoints;
+
     public MonsterSpawnSystem monsterSpawnSystem;
 
     protected MonsterSpawnInfo monsterSpawnInfo;
@@ -115,8 +118,21 @@ public class MonsterSpawner : MonoBehaviour, IMonsterSpawner
         monster.transform.position = spawnPoint.transform.position;
 
         var enemyController = monster.GetComponent<EnemyController>();
-        enemyController.SetDestinationPoint(endMovePoint);
+        enemyController.SetDestinationPoint(this, movePoints[0].position);
 
         ++currentSpawnCount;
     }
+
+    public bool GetMovePoint(ref Vector3 movePoint, int index)
+    {
+        if(index == movePoints.Length)
+        {
+            return false;
+        }
+
+        movePoint.x = movePoints[index].transform.position.x;
+        movePoint.z = movePoints[index].transform.position.z;
+        return true;
+    }
+    // public bool 
 }

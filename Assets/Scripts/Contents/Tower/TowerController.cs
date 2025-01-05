@@ -23,9 +23,13 @@ public class TowerController : MonoBehaviour
     [SerializeField]
     private AttackInfoData attackInfoData;
 
+    [SerializeField]
+    private CreateTowerData[] createTowerDatas;
+    public CreateTowerData[] CreateTowerDatas { get { return createTowerDatas; } }
+
     private Vector3 ownerPosition;
     private Vector2 currentPosition;
-
+  
     private Collider[] targetColliders;
     private Coroutine targetQuest = null;
 

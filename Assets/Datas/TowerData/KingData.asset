@@ -9,13 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fb770fd0a28c844daf6bf9c52c9e160, type: 3}
-  m_Name: TowerProfile
+  m_Script: {fileID: 11500000, guid: 0bd63a62218be2c4aa1ec9bad167504c, type: 3}
+  m_Name: KingData
   m_EditorClassIdentifier: 
-  attackType: 0
-  attackpower: 20
-  masicAttackpower: 0
-  attackRange: 40
-  attackSpeed: 1
-  price: 100
-  resalePrice: 50
+  towerPrefab: {fileID: 7274916945527093717, guid: f41a2af03b2fe054cb7c07c383688291, type: 3}
+  createLocalPosition: {x: 0, y: -1.5, z: 0}
+  price: 300

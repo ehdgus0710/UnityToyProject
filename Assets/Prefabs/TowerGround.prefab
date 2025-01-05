@@ -526,7 +526,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4892386874801253531
 Transform:
@@ -645,6 +645,7 @@ MonoBehaviour:
   ownerGround: {fileID: -5769414260707216426}
   createTowerDatas:
   - {fileID: 11400000, guid: 7c8c081a2469e094997d9cb216f100cd, type: 2}
+  upgradeTower: {fileID: 6811901171134248607}
   towerSocket: {fileID: 7334760323700912666}
 --- !u!54 &2744267736394548657
 Rigidbody:
@@ -671,7 +672,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 14
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &6811901171134248607
 MonoBehaviour:
@@ -685,6 +686,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17ab9718b6038a64eb2577dc386e6d70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ownerGround: {fileID: -5769414260707216426}
+  upgradeTowerDatas: []
+  towerSocket: {fileID: 7334760323700912666}
+  upgradeButton: {fileID: 2975597342068034675}
 --- !u!114 &3901804911125097630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1124,22 +1129,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 363337622625904377}
-        m_TargetAssemblyTypeName: CreateTower, Assembly-CSharp
-        m_MethodName: OnCreateTower
+      - m_Target: {fileID: 6811901171134248607}
+        m_TargetAssemblyTypeName: UpgradeTower, Assembly-CSharp
+        m_MethodName: OnUpgradeTower
         m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2975597342068034675}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

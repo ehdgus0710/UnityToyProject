@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9ec8fe4d89b37c45916d283fd7566be, type: 3}
+  m_Name: Stage2StatusInfo
+  m_EditorClassIdentifier: 
+  statusTable:
+    m_keys: 0100000003000000090000000a0000000c000000
+    m_values:
+    - statusInfoType: 1
+      value: 120
+      maxValue: 120
+      minValue: 120
+    - statusInfoType: 3
+      value: 10
+      maxValue: 10
+      minValue: 0
+    - statusInfoType: 9
+      value: 0
+      maxValue: 0
+      minValue: 0
+    - statusInfoType: 10
+      value: 0
+      maxValue: 0
+      minValue: 0
+    - statusInfoType: 12
+      value: 0
+      maxValue: 0
+      minValue: 0

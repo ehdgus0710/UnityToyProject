@@ -9,6 +9,9 @@ public class CreateTower : MonoBehaviour
     private CreateTowerData[] createTowerDatas;
 
     [SerializeField]
+    private UpgradeTower upgradeTower;
+
+    [SerializeField]
     private Transform towerSocket;
 
     public void OnCreateTower(int index)
@@ -21,5 +24,7 @@ public class CreateTower : MonoBehaviour
 
         var towerController = tower.GetComponent<TowerController>();
         towerController.SetCreateInfo(ownerGround);
+
+        upgradeTower.SetUpgeradeTowerData(towerController.CreateTowerDatas);
     }
 }

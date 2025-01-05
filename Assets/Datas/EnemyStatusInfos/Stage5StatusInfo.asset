@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9ec8fe4d89b37c45916d283fd7566be, type: 3}
-  m_Name: StatusInfo
+  m_Name: Stage5StatusInfo
   m_EditorClassIdentifier: 
   statusTable:
     m_keys: 0100000003000000090000000a0000000c000000
     m_values:
     - statusInfoType: 1
-      value: 100
-      maxValue: 100
-      minValue: 100
+      value: 200
+      maxValue: 200
+      minValue: 200
     - statusInfoType: 3
-      value: 2.5
-      maxValue: 2.5
-      minValue: 0
+      value: 10
+      maxValue: 10
+      minValue: 10
     - statusInfoType: 9
-      value: 0
-      maxValue: 0
-      minValue: 0
+      value: 5
+      maxValue: 5
+      minValue: 5
     - statusInfoType: 10
       value: 0
       maxValue: 0
