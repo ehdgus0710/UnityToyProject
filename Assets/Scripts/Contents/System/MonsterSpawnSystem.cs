@@ -42,8 +42,8 @@ public class MonsterSpawnSystem : MonoBehaviour
             ++activeSpawnerCount;
         }
 
-        currentWaveLevel = Unity.Mathematics.math.min(currentWaveLevel, spawnDataByLevelList.Count - 1);
-        GameController.Instance.SetCurrentWave(currentWaveLevel + 1);
+        currentWaveLevel = Unity.Mathematics.math.min(currentWaveLevel + 1, spawnDataByLevelList.Count - 1);
+        GameController.Instance.SetCurrentWave(currentWaveLevel);
     }
 
     public void StopSpawn()

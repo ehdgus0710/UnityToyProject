@@ -54,7 +54,7 @@ public class GameTimeManager : Sington<GameTimeManager>
         gameTimeScale *= 2f;
         ++speedUpCount;
 
-        if (speedUpCount >= 4)
+        if (speedUpCount >= 3)
         {
             speedUpCount = 0;
             gameTimeScale = 1f;
