@@ -283,7 +283,7 @@ MonoBehaviour:
   currentValues:
     m_keys: 
     m_values: []
-  enemyProfile: {fileID: 11400000, guid: dff5a7d1c5e2e8541a18c26b7f6b4fcb, type: 2}
+  enemyProfile: {fileID: 11400000, guid: 547a762acdd1ba64eb332aa5855d1a78, type: 2}
   hpbar: {fileID: 7088308809215163984}
   hitEvent:
     m_PersistentCalls:

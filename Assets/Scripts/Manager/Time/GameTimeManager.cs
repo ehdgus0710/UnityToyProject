@@ -42,6 +42,7 @@ public class GameTimeManager : Sington<GameTimeManager>
     public void SetTimeScale(float timeScale)
     {
         gameTimeScale = timeScale;
+        Time.fixedDeltaTime = 0.02f * gameTimeScale;
     }
 
     public void ResetTimeScale()
@@ -51,13 +52,13 @@ public class GameTimeManager : Sington<GameTimeManager>
 
     public void OnSpeedUp()
     {
-        gameTimeScale *= 2f;
+        SetTimeScale(gameTimeScale * 2f);
         ++speedUpCount;
 
         if (speedUpCount >= 3)
         {
             speedUpCount = 0;
-            gameTimeScale = 1f;
+            SetTimeScale(1f);
         }
     }
 }
